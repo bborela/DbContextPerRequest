@@ -1,7 +1,7 @@
 DbContextPerRequest
 ===================
 
-Microsoft advises that, when working with EF in web applications, one DbContext be used per web request. This means that by the time the HTTP request ends, the context should be disposed. In my example, using the Unity DI framework, the context is contained in a property in a class named DataContext, which is injected whenever it is necessary to use a Context (inside of a controller or of a repository, for instance). I derive that class so its generic parameter is replaced by whatever DbContext I want (in this example, the DbContext is named MyEntities), so this is derived class is the one that gets registered in UnityConfig.cs:
+Microsoft advises that, when working with EF in web applications, one DbContext be used per web request. This means that by the time the HTTP request ends, the context should be disposed. In my example, using the Unity DI framework, the context is contained in a property in a class named DataContext, which is injected whenever it is necessary to use a Context (inside of a controller or of a repository, for instance). I derive that class so its generic parameter is replaced by whatever DbContext I want (in this example, the DbContext is named MyEntities), so this derived class is the one that gets registered in UnityConfig.cs:
 
 container.RegisterType<IMyEntitiesDataContext, MyEntitiesDataContext>(new PerRequestLifetimeManager());
 
